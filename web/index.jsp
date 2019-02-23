@@ -38,7 +38,6 @@
             <%
                 // Lista ordenada por nombre 
                 ArrayList<Pelicula> lista = PeliculaDAO.consultarPeliculas();
-                out.print(lista);
                 for (Pelicula pelicula : lista) {
                    out.print("<tr><td>");
                    out.print(pelicula.getId_pelidula());
@@ -77,17 +76,16 @@
  
             <%
                 // Lista ordenada por nombre 
-                ArrayList<Pelicula> lista = PeliculaDAO.consultarPeliculas();
-                out.print(lista);
-                for (Pelicula pelicula : lista) {
+                ArrayList<Director> lista2 = DirectorDAO.consultarDirectores();
+                for (Director director : lista2) {
                    out.print("<tr><td>");
-                   out.print(pelicula.getNombre());
+                   out.print(director.getId_director());
                    out.print("</td><td>");
-                   out.print(pelicula.getId_pelidula());
+                   out.print(director.getNombre());
                    out.print("</td><td>");
-                   out.print(pelicula.getId_director());
+                   out.print(director.getApellidos());
                    out.print("</td><td>");
-                   out.print(pelicula.getCostes());
+                   out.print(director.getEdad());
                    out.print("</td></tr>");
                 }
             %>
