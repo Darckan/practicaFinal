@@ -104,10 +104,11 @@ public class DirectorDAO {
             // Ejecutamos la sentencia y obtenemos la tabla resultado
             res = st.executeQuery(sql);
             
-             while (res.next()){
+            // Ahora construimos la lista
+            while (res.next()){
                 Director director = new Director();
                 // Recogemos los datos del turismo, guardamos en un objeto
-                director.setId_director(res.getInt("id"));
+                director.setId_director(res.getInt("id_director"));
                 director.setNombre(res.getString("nombre"));
                 director.setApellidos(res.getString("apellidos"));
                 director.setEdad(res.getInt("edad"));
@@ -115,8 +116,6 @@ public class DirectorDAO {
                 //Añadimos el objeto al array
                 lista.add(director);
             }
-            // Ahora construimos la lista
-            
             
             // Cerramos el recurso PreparedStatement 
             st.close();
