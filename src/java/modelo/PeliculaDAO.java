@@ -182,7 +182,7 @@ public class PeliculaDAO {
             while (res.next()){
                 Pelicula pelicula = new Pelicula();
                 // Recogemos los datos del turismo, guardamos en un objeto
-                pelicula.setId_pelidula(res.getInt("id_pelidula"));
+                pelicula.setId_pelidula(res.getInt("id_pelicula"));
                 pelicula.setId_director(res.getInt("id_director"));
                 pelicula.setNombre(res.getString("nombre"));
                 pelicula.setCostes(res.getInt("costes"));
