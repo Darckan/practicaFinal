@@ -15,4 +15,43 @@ public class Pelicula {
     private String nombre;
     private int id_director;
     private int costes;
+
+    public int getId_pelidula() {
+        return id_pelidula;
+    }
+
+    public void setId_pelidula(int id_pelidula) {
+        this.id_pelidula = id_pelidula;
+    }
+
+    public String getNombre() {
+        return nombre;
+    }
+
+    public void setNombre(String nombre) {
+        this.nombre = nombre;
+    }
+
+    public int getId_director() {
+        return id_director;
+    }
+
+    public void setId_director(int id_director) {
+        this.id_director = id_director;
+    }
+
+    public int getCostes() {
+        return costes;
+    }
+
+    public void setCostes(int costes) {
+        this.costes = costes;
+    }
+
+    @Override
+    public String toString() {
+        return "Pelicula{" + "id_pelidula=" + id_pelidula + ", nombre=" + nombre + ", id_director=" + id_director + ", costes=" + costes + '}';
+    }
+    
+    
 }
