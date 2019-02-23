@@ -53,8 +53,10 @@
 
         </table>
             
+        
+            
         <h1>Directores</h1>
-
+        
         <table border ="1">        
             <tr>
                 <th>
@@ -73,8 +75,9 @@
                     <b>Edad</b>
                 </th>
             </tr>
- 
+            
             <%
+                
                 // Lista ordenada por nombre 
                 ArrayList<Director> lista2 = DirectorDAO.consultarDirectores();
                 for (Director director : lista2) {
@@ -86,11 +89,27 @@
                    out.print(director.getApellidos());
                    out.print("</td><td>");
                    out.print(director.getEdad());
-                   out.print("</td></tr>");
+                   out.print("</td></tr>");  
                 }
+                
             %>
-
+            
         </table>
+        <br/>
+        <form action='./PeliculasDirector' method='POST'>
+            <select name="verPelis">
+            <%
+                for (Director director : lista2) {
+                    out.print("<option value='" + director.getId_director() + "'>" + director.getId_director() + "</option>");  
+                 }
+            %> 
+            <input type="submit" value="Buscar"/>
+            </select>          
+        </form>
+            
+        
+            
+            
         
  
     </body>
