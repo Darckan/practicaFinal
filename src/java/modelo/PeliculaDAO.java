@@ -136,7 +136,7 @@ public class PeliculaDAO {
     }
     
     
-    public static int actualizarDirector(int id_pelicula ,int id_director, String nombre, int costes){
+    public static int actualizarPelicula(int id_pelicula ,int id_director, String nombre, int costes){
         // Cadena con la consulta 
         String sql = "update peliculas set id_director='" + id_director + "' nombre ='" + nombre + "', costes ='" + costes + "' where id_pelicula like '" + id_pelicula + "'";
         Conexion conexion = new Conexion();
@@ -159,5 +159,49 @@ public class PeliculaDAO {
             System.out.println(e);
             return -1;
         }
+    }
+    
+    public static ArrayList<Pelicula> consultarPeliculasDeDirector(int id_director){
+        Statement st;
+        ResultSet res;
+        ArrayList<Pelicula> lista = new ArrayList();
+        
+        // Guardo la consulta SQL realizar en una cadena
+        String sql = "select * from peliculas where id_director = '" + id_director + "' order by nombre";
+  
+        Conexion conexion = new Conexion();
+        
+        try {
+            
+            // Preparamos Statement
+            st = conexion.getConexion().createStatement(); 
+            // Ejecutamos la sentencia y obtenemos la tabla resultado
+            res = st.executeQuery(sql);
+            
+            // Ahora construimos la lista
+            while (res.next()){
+                Pelicula pelicula = new Pelicula();
+                // Recogemos los datos del turismo, guardamos en un objeto
+                pelicula.setId_pelidula(res.getInt("id_pelidula"));
+                pelicula.setId_director(res.getInt("id_director"));
+                pelicula.setNombre(res.getString("nombre"));
+                pelicula.setCostes(res.getInt("costes"));
+
+                //Añadimos el objeto al array
+                lista.add(pelicula);
+            }
+            
+            // Cerramos el recurso PreparedStatement 
+            st.close();
+            // Cerramos la conexión 
+            conexion.cerrarConexion();
+            // La inserción se realizó con éxito, devolvemos filas afectadas
+        } catch (SQLException e) {
+            System.out.println("Problemas durante la consulta en tabla peliculas");
+            System.out.println(e);
+            
+        }
+
+        return lista;  
     }
 }
