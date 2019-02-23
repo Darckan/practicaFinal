@@ -87,13 +87,13 @@ public class DirectorDAO {
         }
     }
     
-    public static Director consultarDirector(String nombre, String apellidos){
+    public static ArrayList<Director> consultarDirectores(){
         Statement st;
         ResultSet res;
-        Director director = new Director();
+        ArrayList<Director> lista = new ArrayList();
         
         // Guardo la consulta SQL realizar en una cadena
-        String sql = "select * from directores where nombre ='"+nombre+"' and apellidos='"+apellidos+"'";
+        String sql = "select * from directores order by nombre";
   
         Conexion conexion = new Conexion();
         
@@ -103,11 +103,20 @@ public class DirectorDAO {
             st = conexion.getConexion().createStatement(); 
             // Ejecutamos la sentencia y obtenemos la tabla resultado
             res = st.executeQuery(sql);
+            
+             while (res.next()){
+                Director director = new Director();
+                // Recogemos los datos del turismo, guardamos en un objeto
+                director.setId_director(res.getInt("id"));
+                director.setNombre(res.getString("nombre"));
+                director.setApellidos(res.getString("apellidos"));
+                director.setEdad(res.getInt("edad"));
+
+                //Añadimos el objeto al array
+                lista.add(director);
+            }
             // Ahora construimos la lista
-            director.setId_director(res.getInt("id"));
-            director.setNombre(res.getString("nombre"));
-            director.setApellidos(res.getString("apellidos"));
-            director.setEdad(res.getInt("edad"));
+            
             
             // Cerramos el recurso PreparedStatement 
             st.close();
@@ -120,7 +129,7 @@ public class DirectorDAO {
             
         }
 
-        return director;  
+        return lista;  
     }
    
     
