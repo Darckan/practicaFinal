@@ -131,6 +131,32 @@ public class DirectorDAO {
 
         return lista;  
     }
+    
+    
+    public static int actualizarDirector(int id_director, String nombre, String apellidos, int edad){
+        // Cadena con la consulta 
+        String sql = "update directores set nombre ='" + nombre + "', apellidos ='" + apellidos + "', edad ='" + edad + "' where id_director like '" + id_director + "'";
+        Conexion conexion = new Conexion();
+        try {
+
+            int nfilas;
+            // Ejecutamos la sentencia de modificación
+            //try-with-resources
+            try (Statement prest = conexion.getConexion().createStatement()) {
+                // Ejecutamos la sentencia de modificación
+                nfilas = prest.executeUpdate(sql);
+                // Cerramos el recurso PreparedStatement
+            }
+            // Cerramos la conexión 
+            conexion.cerrarConexion();
+            // La inserción se realizó con éxito, devolvemos filas afectadas
+            return nfilas;
+        } catch (SQLException e) {
+            System.out.println("Problemas durante la modificación de datos en la tabla directores");
+            System.out.println(e);
+            return -1;
+        }
+    }
    
     
 }
