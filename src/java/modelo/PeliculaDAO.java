@@ -138,7 +138,7 @@ public class PeliculaDAO {
     
     public static int actualizarPelicula(int id_pelicula ,int id_director, String nombre, int costes){
         // Cadena con la consulta 
-        String sql = "update peliculas set id_director='" + id_director + "' nombre ='" + nombre + "', costes ='" + costes + "' where id_pelicula like '" + id_pelicula + "'";
+        String sql = "update peliculas set id_director='" + id_director + "', nombre ='" + nombre + "', costes ='" + costes + "' where id_pelicula = '" + id_pelicula + "'";
         Conexion conexion = new Conexion();
         try {
 
