@@ -15,7 +15,7 @@
     </head>
     <body>
         <h1>Peliculas</h1>
-
+        <form method="POST">
         <table border ="1">        
             <tr>
                 <th>
@@ -47,14 +47,19 @@
                    out.print(pelicula.getId_director());
                    out.print("</td><td>");
                    out.print(pelicula.getCostes());
+                   out.print("</td><td>");
+                   out.print("<button type='submit' name='borraPeliculas' value='" + pelicula.getId_pelidula() + "' formaction='./BorrarPelicula'>Borrar</button>");
+                   out.print("</td><td>");
+                   out.print("<button type='submit' name='editPeliculas' value='" + pelicula.getId_pelidula() + "' formaction='./ActualizaPelicula.jsp'>Editar</button>");
                    out.print("</td></tr>");
                 }
             %>
 
         </table>
+        </form>
             
         <h1>Directores</h1>
-        
+        <form method="POST">
         <table border ="1">        
             <tr>
                 <th>
@@ -73,7 +78,6 @@
                     <b>Edad</b>
                 </th>
             </tr>
-            
             <%
                 
                 // Lista ordenada por nombre 
@@ -87,12 +91,17 @@
                    out.print(director.getApellidos());
                    out.print("</td><td>");
                    out.print(director.getEdad());
+                   out.print("</td><td>");
+                   out.print("<button type='submit' name='borraDirector' value='" + director.getId_director() + "' formaction='./BorrarDirector'>Borrar</button>");
+                   out.print("</td><td>");
+                   out.print("<button type='submit' name='editDirector' value='" + director.getId_director() + "' formaction='./ActualizaDirector.jsp'>Editar</button>");
                    out.print("</td></tr>");  
                 }
                 
             %>
-            
+          
         </table>
+        </form>
         <br/>
         <form action='./PeliculasDirector' method='POST'>
             <select name="verPelis">
