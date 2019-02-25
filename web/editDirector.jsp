@@ -13,30 +13,32 @@
 <html>
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-        <title>JSP Page</title>
+        <link href="./css/style.css" rel="stylesheet" type="text/css">
+        <title>Editar Director</title>
     </head>
     <body>
-        <div>
-        <form action='./Controlador' method='POST'>
-            <%
-                Object id = session.getAttribute("editDirectores");
-                out.print(Integer.parseInt(id.toString()));
-                ArrayList<Director> lista = DirectorDAO.consultarDirectores();
-                
-                for (Director director : lista) {
-                    if(director.getId_director() == Integer.parseInt(id.toString())){
-                        out.print("<label for='nombreEditDirector'>Nombre</label><input type='text' required name='nombreEditDirector' id='nombreEditDirector' value='" + director.getNombre() + "'/>");
-                        out.print("<label for='apellidosEditDirector'>Apellidos</label><input type='text' required name='apellidosEditDirector' id='apellidosEditDirector' value='" + director.getApellidos()+ "'/>");   
-                        out.print("<label for='edadEditDirector'>Edad</label><input type='number' required name='edadEditDirector' id='edadEditDirector' value='" + director.getEdad() + "'/>");
+        <div class="margen">
+            <form action='./Controlador' method='POST'>
+                <%
+                    Object id = session.getAttribute("editDirectores");
+                    out.print(Integer.parseInt(id.toString()));
+                    ArrayList<Director> lista = DirectorDAO.consultarDirectores();
+
+                    for (Director director : lista) {
+                        if(director.getId_director() == Integer.parseInt(id.toString())){
+                            out.print("<label for='nombreEditDirector'>Nombre</label><input type='text' required name='nombreEditDirector' id='nombreEditDirector' value='" + director.getNombre() + "'/>");
+                            out.print("<label for='apellidosEditDirector'>Apellidos</label><input type='text' required name='apellidosEditDirector' id='apellidosEditDirector' value='" + director.getApellidos()+ "'/>");   
+                            out.print("<label for='edadEditDirector'>Edad</label><input type='number' required name='edadEditDirector' id='edadEditDirector' value='" + director.getEdad() + "'/>");
+                        }
                     }
-                }
-                
-            %>
+
+                %>
                 <input type='hidden' name='editDirectores' value='${sessionScope['editDirectores']}'/>
                 <input type='hidden' name='accion' value='editarDirector2'/>
                 <input type="submit" value="Editar"/>
                 </select>          
             </form>
+            <button type="button" onclick="location.href = './index.jsp'" class="margen">Volver</button>
         </div>
     </body>
 </html>
