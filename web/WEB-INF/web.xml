@@ -17,6 +17,14 @@
         <servlet-name>InsertPelicula</servlet-name>
         <url-pattern>/InsertPelicula</url-pattern>
     </servlet-mapping>
+    <servlet>
+        <servlet-name>InsertDirector</servlet-name>
+        <servlet-class>controlador.InsertDirector</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>InsertDirector</servlet-name>
+        <url-pattern>/InsertDirector</url-pattern>
+    </servlet-mapping>
     <session-config>
         <session-timeout>
             30
