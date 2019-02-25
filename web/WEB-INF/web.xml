@@ -25,6 +25,14 @@
         <servlet-name>InsertDirector</servlet-name>
         <url-pattern>/InsertDirector</url-pattern>
     </servlet-mapping>
+    <servlet>
+        <servlet-name>BorrarPelicula</servlet-name>
+        <servlet-class>controlador.BorrarPelicula</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>BorrarPelicula</servlet-name>
+        <url-pattern>/BorrarPelicula</url-pattern>
+    </servlet-mapping>
     <session-config>
         <session-timeout>
             30
