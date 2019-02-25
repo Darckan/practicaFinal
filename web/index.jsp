@@ -107,10 +107,22 @@
             </select>          
         </form>
             
-        
-            
-            
-        
+            <div>
+                <h2>Añadir pelicula</h2>
+                <form action='./InsertPelicula' method='POST'>
+                    <label for="nombrePeli">Nombre</label><input type="text" required name="nombrePeli" id="nombrePeli"/>
+                    <label for="costesPeli">Costes</label><input type="number" required name="costesPeli" id="costesPeli"/>
+                    <label for="directorPeli">Director</label>
+                    <select name="directorPeli" id="directorPeli">
+                    <%
+                        for (Director director : lista2) {
+                            out.print("<option value='" + director.getId_director() + "'>" + director.getId_director() + "</option>");  
+                         }
+                    %> 
+                    <input type="submit" value="Añadir"/>
+                    </select>          
+                </form>
+            </div>
  
     </body>
 </html>
