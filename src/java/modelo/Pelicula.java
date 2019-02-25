@@ -11,17 +11,17 @@ package modelo;
  */
 public class Pelicula {
     
-    private int id_pelidula;
+    private int id_pelicula;
     private String nombre;
     private int id_director;
     private int costes;
 
-    public int getId_pelidula() {
-        return id_pelidula;
+    public int getId_pelicula() {
+        return id_pelicula;
     }
 
-    public void setId_pelidula(int id_pelidula) {
-        this.id_pelidula = id_pelidula;
+    public void setId_pelicula(int id_pelidula) {
+        this.id_pelicula = id_pelidula;
     }
 
     public String getNombre() {
@@ -50,7 +50,7 @@ public class Pelicula {
 
     @Override
     public String toString() {
-        return "Pelicula{" + "id_pelidula=" + id_pelidula + ", nombre=" + nombre + ", id_director=" + id_director + ", costes=" + costes + '}';
+        return "Pelicula{" + "id_pelidula=" + id_pelicula + ", nombre=" + nombre + ", id_director=" + id_director + ", costes=" + costes + '}';
     }
     
     
