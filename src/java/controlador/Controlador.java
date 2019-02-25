@@ -15,6 +15,8 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 import modelo.DirectorDAO;
 import modelo.PeliculaDAO;
+import modelo.Pelicula;
+import modelo.Director;
 /**
  *
  * @author darck
@@ -45,11 +47,21 @@ public class Controlador extends HttpServlet{
             String nombreEditPeli = request.getParameter("nombreEditPeli");
             int costesEditPeli = Integer.parseInt(request.getParameter("costesEditPeli"));
             int directorEditPeli = Integer.parseInt(request.getParameter("directorEditPeli"));
-
-            int filas = PeliculaDAO.actualizarPelicula(editPeliculas, directorEditPeli, nombreEditPeli, costesEditPeli );
+            int filas = 0;
             
-            // Una vez realizada la operación, redirigimos a la vista
-            response.sendRedirect(response.encodeRedirectURL("index.jsp?" + filas));
+            Pelicula comprobante = PeliculaDAO.consultarPelicula(editPeliculas);
+            
+            if(comprobante.getNombre().equals(nombreEditPeli)){
+                filas = PeliculaDAO.actualizarPelicula(editPeliculas, directorEditPeli, nombreEditPeli, costesEditPeli );
+            }else{
+                if (PeliculaDAO.exitePelicula(nombreEditPeli)){
+                    response.sendRedirect(response.encodeRedirectURL("ErrorPeli.jsp"));
+                }else{
+                    filas = PeliculaDAO.actualizarPelicula(editPeliculas, directorEditPeli, nombreEditPeli, costesEditPeli );
+                    // Una vez realizada la operación, redirigimos a la vista
+                    response.sendRedirect(response.encodeRedirectURL("index.jsp?" + filas));
+                }
+            }  
             
         } else if(accion.equals("editarDirector1")){
             
@@ -63,12 +75,22 @@ public class Controlador extends HttpServlet{
             String nombreEditDirector = request.getParameter("nombreEditDirector");
             String apellidosEditDirector = request.getParameter("apellidosEditDirector");
             int edadEditDirector = Integer.parseInt(request.getParameter("edadEditDirector"));
+            int filas = 0;
+            
+            Director comprobante = DirectorDAO.consultarDirector(editDirectores);
+            
+            if(comprobante.getNombre().equals(nombreEditDirector) && comprobante.getApellidos().equals(apellidosEditDirector)){
+                filas = DirectorDAO.actualizarDirector(editDirectores, nombreEditDirector, apellidosEditDirector, edadEditDirector );
+            }else{
+                if (DirectorDAO.exiteDirector(nombreEditDirector, apellidosEditDirector)){
+                    response.sendRedirect(response.encodeRedirectURL("ErrorDire.jsp"));
+                }else{
+                    filas = DirectorDAO.actualizarDirector(editDirectores, nombreEditDirector, apellidosEditDirector, edadEditDirector );
+                    // Una vez realizada la operación, redirigimos a la vista
+                    response.sendRedirect(response.encodeRedirectURL("index.jsp?" + filas));
+                }
+            }
 
-            int filas = DirectorDAO.actualizarDirector(editDirectores, nombreEditDirector, apellidosEditDirector, edadEditDirector );
-            
-            // Una vez realizada la operación, redirigimos a la vista
-            response.sendRedirect(response.encodeRedirectURL("index.jsp?" + filas));
-            
         } else if(accion.equals("borrarPelicula")){
                      
             int id_pelicula = Integer.parseInt(request.getParameter("borraPeliculas"));
@@ -106,10 +128,9 @@ public class Controlador extends HttpServlet{
                 response.sendRedirect(response.encodeRedirectURL("ErrorDire.jsp"));
             }else{
                 filas = DirectorDAO.insertarDirector(nombreDirect, apeDirect, edadDirect);
-            }
-
-            // Una vez realizada la operación, redirigimos a la vista
-            response.sendRedirect(response.encodeRedirectURL("index.jsp?" + filas));
+                // Una vez realizada la operación, redirigimos a la vista
+                response.sendRedirect(response.encodeRedirectURL("index.jsp?" + filas));
+            }   
             
         } else if(accion.equals("insertPelicula")){
             
@@ -122,11 +143,10 @@ public class Controlador extends HttpServlet{
                 response.sendRedirect(response.encodeRedirectURL("ErrorPeli.jsp"));
             }else{
                 filas = PeliculaDAO.insertarPelicula(nombrePeli, directorPeli, costesPeli);
+                // Una vez realizada la operación, redirigimos a la vista
+                response.sendRedirect(response.encodeRedirectURL("index.jsp?" + filas));
             }
-
-            // Una vez realizada la operación, redirigimos a la vista
-            response.sendRedirect(response.encodeRedirectURL("index.jsp?" + filas));
-            
+    
         } else{
             response.sendRedirect(response.encodeRedirectURL("index.jsp?algofallo"));
         }
