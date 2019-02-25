@@ -53,8 +53,6 @@
 
         </table>
             
-        
-            
         <h1>Directores</h1>
         
         <table border ="1">        
@@ -106,23 +104,33 @@
             <input type="submit" value="Buscar"/>
             </select>          
         </form>
+                   
+        <div>
+            <h2>Añadir Director</h2>
+            <form action='./InsertDirector' method='POST'>
+                <label for="nombreDirect">Nombre</label><input type="text" required name="nombreDirect" id="nombreDirect"/>
+                <label for="apeDirect">Apellidos</label><input type="text" required name="apeDirect" id="apeDirect"/>
+                <label for="edadDirect">Edad</label><input type="number" required name="edadDirect" id="edadDirect"/> 
+                <input type="submit" value="Añadir"/>
+            </form>
+        </div>
             
-            <div>
-                <h2>Añadir pelicula</h2>
-                <form action='./InsertPelicula' method='POST'>
-                    <label for="nombrePeli">Nombre</label><input type="text" required name="nombrePeli" id="nombrePeli"/>
-                    <label for="costesPeli">Costes</label><input type="number" required name="costesPeli" id="costesPeli"/>
-                    <label for="directorPeli">Director</label>
-                    <select name="directorPeli" id="directorPeli">
-                    <%
-                        for (Director director : lista2) {
-                            out.print("<option value='" + director.getId_director() + "'>" + director.getId_director() + "</option>");  
-                         }
-                    %> 
-                    <input type="submit" value="Añadir"/>
-                    </select>          
-                </form>
-            </div>
+        <div>
+            <h2>Añadir pelicula</h2>
+            <form action='./InsertPelicula' method='POST'>
+                <label for="nombrePeli">Nombre</label><input type="text" required name="nombrePeli" id="nombrePeli"/>
+                <label for="costesPeli">Costes</label><input type="number" required name="costesPeli" id="costesPeli"/>
+                <label for="directorPeli">Director</label>
+                <select name="directorPeli" id="directorPeli">
+                <%
+                    for (Director director : lista2) {
+                        out.print("<option value='" + director.getId_director() + "'>" + director.getId_director() + "</option>");  
+                     }
+                %> 
+                <input type="submit" value="Añadir"/>
+                </select>          
+            </form>
+        </div>
  
     </body>
 </html>
