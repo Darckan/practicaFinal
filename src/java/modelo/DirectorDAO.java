@@ -87,13 +87,54 @@ public class DirectorDAO {
         }
     }
     
+    public static Director consultarDirector( int id ){
+        Statement st;
+        ResultSet res;
+        Director resultado = new Director();
+        
+        // Guardo la consulta SQL realizar en una cadena
+        String sql = "select * from directores ";
+  
+        Conexion conexion = new Conexion();
+        
+        try {
+            
+            // Preparamos Statement
+            st = conexion.getConexion().createStatement(); 
+            // Ejecutamos la sentencia y obtenemos la tabla resultado
+            res = st.executeQuery(sql);
+            
+            while (res.next()){
+                
+                if(res.getInt("id_director") == id){
+                    resultado.setId_director(id);
+                    resultado.setNombre(res.getString("nombre"));
+                    resultado.setApellidos(res.getString("apellidos"));
+                    resultado.setEdad(res.getInt("edad"));
+                }
+            }
+
+            // Cerramos el recurso PreparedStatement 
+            st.close();
+            // Cerramos la conexión 
+            conexion.cerrarConexion();
+            // La inserción se realizó con éxito, devolvemos filas afectadas
+        } catch (SQLException e) {
+            System.out.println("Problemas durante la consulta en tabla directores");
+            System.out.println(e);
+            
+        }
+
+        return resultado;  
+    }
+    
     public static ArrayList<Director> consultarDirectores(){
         Statement st;
         ResultSet res;
         ArrayList<Director> lista = new ArrayList();
         
         // Guardo la consulta SQL realizar en una cadena
-        String sql = "select * from directores order by nombre";
+        String sql = "select * from directores";
   
         Conexion conexion = new Conexion();
         
