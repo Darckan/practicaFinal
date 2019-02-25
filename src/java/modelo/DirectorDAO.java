@@ -52,7 +52,7 @@ public class DirectorDAO {
     public static int insertarDirector(String nombre, String apellidos, int edad){
         
         // Cadena con la consulta parametrizada
-        String sql = "insert into directores values (?,?,?)";
+        String sql = "insert into directores (nombre, apellidos, edad) values (?,?,?)";
 
         Conexion conexion = new Conexion();
         
