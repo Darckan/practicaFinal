@@ -1,46 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <web-app version="3.1" xmlns="http://xmlns.jcp.org/xml/ns/javaee" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/javaee http://xmlns.jcp.org/xml/ns/javaee/web-app_3_1.xsd">
     <servlet>
-        <servlet-name>PeliculasDirector</servlet-name>
-        <servlet-class>controlador.PeliculasDirector</servlet-class>
-    </servlet>
-    <servlet-mapping>
-        <servlet-name>PeliculasDirector</servlet-name>
-        <url-pattern>/PeliculasDirector</url-pattern>
-    </servlet-mapping>
-    <servlet>
-        <servlet-name>InsertPelicula</servlet-name>
-        <servlet-class>controlador.InsertPelicula</servlet-class>
-    </servlet>
-    <servlet-mapping>
-        <servlet-name>InsertPelicula</servlet-name>
-        <url-pattern>/InsertPelicula</url-pattern>
-    </servlet-mapping>
-    <servlet>
-        <servlet-name>InsertDirector</servlet-name>
-        <servlet-class>controlador.InsertDirector</servlet-class>
-    </servlet>
-    <servlet-mapping>
-        <servlet-name>InsertDirector</servlet-name>
-        <url-pattern>/InsertDirector</url-pattern>
-    </servlet-mapping>
-    <servlet>
-        <servlet-name>BorrarPelicula</servlet-name>
-        <servlet-class>controlador.BorrarPelicula</servlet-class>
-    </servlet>
-    <servlet-mapping>
-        <servlet-name>BorrarPelicula</servlet-name>
-        <url-pattern>/BorrarPelicula</url-pattern>
-    </servlet-mapping>
-    <servlet>
-        <servlet-name>BorrarDirector</servlet-name>
-        <servlet-class>controlador.BorrarDirector</servlet-class>
-    </servlet>
-    <servlet-mapping>
-        <servlet-name>BorrarDirector</servlet-name>
-        <url-pattern>/BorrarDirector</url-pattern>
-    </servlet-mapping>
-    <servlet>
         <servlet-name>Controlador</servlet-name>
         <servlet-class>controlador.Controlador</servlet-class>
     </servlet>
