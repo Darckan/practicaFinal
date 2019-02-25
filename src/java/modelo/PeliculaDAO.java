@@ -71,8 +71,8 @@ public class PeliculaDAO {
             // indice indica la posicion del argumento ?, empieza en 1
             // valor es el dato que queremos insertar
             prest.setString(1, nombre);
-            prest.setInt(2, id_director);
-            prest.setInt(3, costes);
+            prest.setInt(2, costes);
+            prest.setInt(3, id_director);
 
             // Ejecutamos la sentencia de inserción preparada anteriormente
             int nfilas = prest.executeUpdate();
@@ -91,13 +91,53 @@ public class PeliculaDAO {
         }
     }
     
+    public static Pelicula consultarPelicula( int id ){
+        Statement st;
+        ResultSet res;
+        Pelicula resultado = new Pelicula();
+        
+        // Guardo la consulta SQL realizar en una cadena
+        String sql = "select * from peliculas where id_pelicula = " + id;
+  
+        Conexion conexion = new Conexion();
+        
+        try {
+            
+            // Preparamos Statement
+            st = conexion.getConexion().createStatement(); 
+            // Ejecutamos la sentencia y obtenemos la tabla resultado
+            res = st.executeQuery(sql);
+            // Ahora construimos la lista
+            while (res.next()){
+                
+                if(res.getInt("id_director") == id){
+                    resultado.setId_pelicula(id);
+                    resultado.setId_director(res.getInt("id_director"));
+                    resultado.setNombre(res.getString("nombre"));
+                    resultado.setCostes(res.getInt("costes"));
+                }
+            }
+            // Cerramos el recurso PreparedStatement 
+            st.close();
+            // Cerramos la conexión 
+            conexion.cerrarConexion();
+            // La inserción se realizó con éxito, devolvemos filas afectadas
+        } catch (SQLException e) {
+            System.out.println("Problemas durante la consulta en tabla directores");
+            System.out.println(e);
+            
+        }
+
+        return resultado;  
+    }
+    
     public static ArrayList<Pelicula> consultarPeliculas(){
         Statement st;
         ResultSet res;
         ArrayList<Pelicula> lista = new ArrayList();
         
         // Guardo la consulta SQL realizar en una cadena
-        String sql = "select * from peliculas order by nombre";
+        String sql = "select * from peliculas";
   
         Conexion conexion = new Conexion();
         
@@ -112,7 +152,7 @@ public class PeliculaDAO {
             while (res.next()){
                 Pelicula pelicula = new Pelicula();
                 // Recogemos los datos del turismo, guardamos en un objeto
-                pelicula.setId_pelidula(res.getInt("id_pelicula"));
+                pelicula.setId_pelicula(res.getInt("id_pelicula"));
                 pelicula.setId_director(res.getInt("id_director"));
                 pelicula.setNombre(res.getString("nombre"));
                 pelicula.setCostes(res.getInt("costes"));
@@ -182,7 +222,7 @@ public class PeliculaDAO {
             while (res.next()){
                 Pelicula pelicula = new Pelicula();
                 // Recogemos los datos del turismo, guardamos en un objeto
-                pelicula.setId_pelidula(res.getInt("id_pelicula"));
+                pelicula.setId_pelicula(res.getInt("id_pelicula"));
                 pelicula.setId_director(res.getInt("id_director"));
                 pelicula.setNombre(res.getString("nombre"));
                 pelicula.setCostes(res.getInt("costes"));
