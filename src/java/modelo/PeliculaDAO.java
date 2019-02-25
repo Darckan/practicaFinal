@@ -204,4 +204,29 @@ public class PeliculaDAO {
 
         return lista;  
     }
+    
+    public static int borrarPelicula(int id_pelicula){
+        // Cadena con la consulta 
+        String sql = "delete from peliculas where id_pelicula = '" + id_pelicula + "'";
+        Conexion conexion = new Conexion();
+        try {
+
+            int nfilas;
+            // Ejecutamos la sentencia de modificación
+            //try-with-resources
+            try (Statement prest = conexion.getConexion().createStatement()) {
+                // Ejecutamos la sentencia de modificación
+                nfilas = prest.executeUpdate(sql);
+                // Cerramos el recurso PreparedStatement
+            }
+            // Cerramos la conexión 
+            conexion.cerrarConexion();
+            // La inserción se realizó con éxito, devolvemos filas afectadas
+            return nfilas;
+        } catch (SQLException e) {
+            System.out.println("Problemas durante la modificación de datos en la tabla peliculas");
+            System.out.println(e);
+            return -1;
+        }
+    }  
 }
