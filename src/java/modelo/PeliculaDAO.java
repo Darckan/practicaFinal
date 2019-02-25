@@ -53,10 +53,10 @@ public class PeliculaDAO {
         return resultado;  
     }
     
-    public static int insertarDirector(String nombre, int id_director, int costes){
+    public static int insertarPelicula(String nombre, int id_director, int costes){
         
         // Cadena con la consulta parametrizada
-        String sql = "insert into peliculas values (?,?,?)";
+        String sql = "insert into peliculas (nombre, costes, id_director) values (?,?,?)";
 
         Conexion conexion = new Conexion();
         
