@@ -28,7 +28,7 @@ public class DirectorDAO {
             st = conexion.getConexion().createStatement(); 
             // Ejecutamos la sentencia y obtenemos la tabla resultado
             res = st.executeQuery(sql);
-            // Ahora construimos la lista
+            // En caso de encontrar en la base de datos un nombre igual al parametro, devolveremos true
             while (res.next()){
                 
                 if(res.getString("nombre").equals(nombre) && res.getString("apellidos").equals(apellidos)){
@@ -103,7 +103,7 @@ public class DirectorDAO {
             st = conexion.getConexion().createStatement(); 
             // Ejecutamos la sentencia y obtenemos la tabla resultado
             res = st.executeQuery(sql);
-            
+            // En caso de que se encuentre un id_director que tenga la misma que buscamos, creamos un objeto director con todos los parametros que se nos devuelven
             while (res.next()){
                 
                 if(res.getInt("id_director") == id){
@@ -148,7 +148,7 @@ public class DirectorDAO {
             // Ahora construimos la lista
             while (res.next()){
                 Director director = new Director();
-                // Recogemos los datos del turismo, guardamos en un objeto
+                // Recogemos los datos del director, guardamos en un objeto
                 director.setId_director(res.getInt("id_director"));
                 director.setNombre(res.getString("nombre"));
                 director.setApellidos(res.getString("apellidos"));
@@ -189,7 +189,7 @@ public class DirectorDAO {
             }
             // Cerramos la conexión 
             conexion.cerrarConexion();
-            // La inserción se realizó con éxito, devolvemos filas afectadas
+            // La actualizacion se realizó con éxito, devolvemos filas afectadas
             return nfilas;
         } catch (SQLException e) {
             System.out.println("Problemas durante la modificación de datos en la tabla directores");
@@ -205,16 +205,15 @@ public class DirectorDAO {
         try {
 
             int nfilas;
-            // Ejecutamos la sentencia de modificación
             //try-with-resources
             try (Statement prest = conexion.getConexion().createStatement()) {
-                // Ejecutamos la sentencia de modificación
+                // Ejecutamos la sentencia de borrado
                 nfilas = prest.executeUpdate(sql);
                 // Cerramos el recurso PreparedStatement
             }
             // Cerramos la conexión 
             conexion.cerrarConexion();
-            // La inserción se realizó con éxito, devolvemos filas afectadas
+            // El borrado se realizó con éxito, devolvemos filas afectadas
             return nfilas;
         } catch (SQLException e) {
             System.out.println("Problemas durante la modificación de datos en la tabla directores");
