@@ -32,7 +32,7 @@ public class PeliculaDAO {
             st = conexion.getConexion().createStatement(); 
             // Ejecutamos la sentencia y obtenemos la tabla resultado
             res = st.executeQuery(sql);
-            // Ahora construimos la lista
+            // Ahora en caso de encontrar un nombre igual al que buscamos devolveremos true
             while (res.next()){
                 
                 if(res.getString("nombre").equals(nombre)){
@@ -49,7 +49,8 @@ public class PeliculaDAO {
             System.out.println(e);
             
         }
-
+        
+        //Devolvemos el resultado
         return resultado;  
     }
     
@@ -107,7 +108,7 @@ public class PeliculaDAO {
             st = conexion.getConexion().createStatement(); 
             // Ejecutamos la sentencia y obtenemos la tabla resultado
             res = st.executeQuery(sql);
-            // Ahora construimos la lista
+            // Ahora en caso de encontrar un id igual, construimos un objeto con los parametros del objeto con ese id
             while (res.next()){
                 
                 if(res.getInt("id_pelicula") == id){
@@ -121,13 +122,14 @@ public class PeliculaDAO {
             st.close();
             // Cerramos la conexión 
             conexion.cerrarConexion();
-            // La inserción se realizó con éxito, devolvemos filas afectadas
+            
         } catch (SQLException e) {
             System.out.println("Problemas durante la consulta en tabla directores");
             System.out.println(e);
             
         }
-
+        
+        //Devolvemos el resultado
         return resultado;  
     }
     
@@ -165,13 +167,14 @@ public class PeliculaDAO {
             st.close();
             // Cerramos la conexión 
             conexion.cerrarConexion();
-            // La inserción se realizó con éxito, devolvemos filas afectadas
+
         } catch (SQLException e) {
             System.out.println("Problemas durante la consulta en tabla peliculas");
             System.out.println(e);
             
         }
-
+        
+        //Devolvemos la lista resultante
         return lista;  
     }
     
@@ -183,16 +186,16 @@ public class PeliculaDAO {
         try {
 
             int nfilas;
-            // Ejecutamos la sentencia de modificación
+            // Ejecutamos la sentencia de actualización
             //try-with-resources
             try (Statement prest = conexion.getConexion().createStatement()) {
-                // Ejecutamos la sentencia de modificación
+                // Ejecutamos la sentencia de actualización
                 nfilas = prest.executeUpdate(sql);
                 // Cerramos el recurso PreparedStatement
             }
             // Cerramos la conexión 
             conexion.cerrarConexion();
-            // La inserción se realizó con éxito, devolvemos filas afectadas
+            // La actualización se realizó con éxito, devolvemos filas afectadas
             return nfilas;
         } catch (SQLException e) {
             System.out.println("Problemas durante la modificación de datos en la tabla peliculas");
@@ -235,13 +238,13 @@ public class PeliculaDAO {
             st.close();
             // Cerramos la conexión 
             conexion.cerrarConexion();
-            // La inserción se realizó con éxito, devolvemos filas afectadas
+            
         } catch (SQLException e) {
             System.out.println("Problemas durante la consulta en tabla peliculas");
             System.out.println(e);
             
         }
-
+        //Devolvemos la lista resultante
         return lista;  
     }
     
@@ -252,16 +255,16 @@ public class PeliculaDAO {
         try {
 
             int nfilas;
-            // Ejecutamos la sentencia de modificación
+            // Ejecutamos la sentencia de borrados
             //try-with-resources
             try (Statement prest = conexion.getConexion().createStatement()) {
-                // Ejecutamos la sentencia de modificación
+                // Ejecutamos la sentencia de borrado
                 nfilas = prest.executeUpdate(sql);
                 // Cerramos el recurso PreparedStatement
             }
             // Cerramos la conexión 
             conexion.cerrarConexion();
-            // La inserción se realizó con éxito, devolvemos filas afectadas
+            // El borrado se realizó con éxito, devolvemos filas afectadas
             return nfilas;
         } catch (SQLException e) {
             System.out.println("Problemas durante la modificación de datos en la tabla peliculas");
