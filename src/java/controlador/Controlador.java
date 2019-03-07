@@ -53,6 +53,7 @@ public class Controlador extends HttpServlet{
             
             if(comprobante.getNombre().equals(nombreEditPeli)){
                 filas = PeliculaDAO.actualizarPelicula(editPeliculas, directorEditPeli, nombreEditPeli, costesEditPeli );
+                response.sendRedirect(response.encodeRedirectURL("index.jsp?" + filas));
             }else{
                 if (PeliculaDAO.exitePelicula(nombreEditPeli)){
                     response.sendRedirect(response.encodeRedirectURL("ErrorPeli.jsp"));
@@ -61,7 +62,7 @@ public class Controlador extends HttpServlet{
                     // Una vez realizada la operación, redirigimos a la vista
                     response.sendRedirect(response.encodeRedirectURL("index.jsp?" + filas));
                 }
-            }  
+            }
             
         } else if(accion.equals("editarDirector1")){
             
@@ -81,6 +82,7 @@ public class Controlador extends HttpServlet{
             
             if(comprobante.getNombre().equals(nombreEditDirector) && comprobante.getApellidos().equals(apellidosEditDirector)){
                 filas = DirectorDAO.actualizarDirector(editDirectores, nombreEditDirector, apellidosEditDirector, edadEditDirector );
+                response.sendRedirect(response.encodeRedirectURL("index.jsp?" + filas));
             }else{
                 if (DirectorDAO.exiteDirector(nombreEditDirector, apellidosEditDirector)){
                     response.sendRedirect(response.encodeRedirectURL("ErrorDire.jsp"));

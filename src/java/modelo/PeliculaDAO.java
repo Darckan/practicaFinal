@@ -97,7 +97,7 @@ public class PeliculaDAO {
         Pelicula resultado = new Pelicula();
         
         // Guardo la consulta SQL realizar en una cadena
-        String sql = "select * from peliculas where id_pelicula = " + id;
+        String sql = "select * from peliculas";
   
         Conexion conexion = new Conexion();
         
@@ -110,7 +110,7 @@ public class PeliculaDAO {
             // Ahora construimos la lista
             while (res.next()){
                 
-                if(res.getInt("id_director") == id){
+                if(res.getInt("id_pelicula") == id){
                     resultado.setId_pelicula(id);
                     resultado.setId_director(res.getInt("id_director"));
                     resultado.setNombre(res.getString("nombre"));
